@@ -17,6 +17,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the main class where new visitors will sign in by inputting
+ * information into several fields:  User name, user email, and user phone number.
+ * If the user leaves some fields empty they will be instructed to fill all fields.
+ * Once the user clicks the submit button, the information will be encapsulated into an
+ * instantiated Visitor Object which will be stored into the Database where it can be
+ * accessed.
+ */
 
 public class Sign_In extends ActionBarActivity {
 
@@ -28,13 +36,11 @@ public class Sign_In extends ActionBarActivity {
     private static final String CONFIRMED_STATUS="Signed-In";
     private static final String NOT_SIGNED_IN="Not Signed-In";
     DatabaseHandler myDB=new DatabaseHandler(this);
-    @Override
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign__in);
-
-
 
         FullName=(EditText)findViewById(R.id.VisitorName);
         EmailAddress=(EditText)findViewById(R.id.EmailAddress);
@@ -55,9 +61,13 @@ public class Sign_In extends ActionBarActivity {
                   IncompleteSubmit.show(Manager,NOT_SIGNED_IN);
                 }
                 else {
+
+                    /**
+                     * Create a temp Visitor object to store into the database.
+                     * The text fields are then cleared to sign in next user
+                     */
                     Visitor temp = new Visitor(FullName.getText().toString(), EmailAddress.getText().toString(), PhoneNumber.getText().toString());
-                    //VisitorList.add(temp);
-                    myDB.addVisitor(temp);
+                    myDB.addVisitor(temp); //Add Visitor to the Database
                     Submitted.show(Manager,CONFIRMED_STATUS);
                     FullName.setText("");
                     EmailAddress.setText("");

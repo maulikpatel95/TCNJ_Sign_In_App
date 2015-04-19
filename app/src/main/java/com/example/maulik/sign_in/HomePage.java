@@ -19,12 +19,16 @@ import java.util.TooManyListenersException;
 
 /**
  * Created by Maulik on 4/17/2015.
+ *
+ * This class is the homepage of the mobile application.  There are two button
+ * options on the home screen:  one for visitors and one for faculty.  In order to
+ * access the faculty page, a password must be entered in order to proceed further
  */
 public class HomePage extends Activity {
 
     Button VisitorButton,FacultyButton;
     Context context=this;
-    FragmentManager DialogManager=getFragmentManager();
+    FragmentManager DialogManager=getFragmentManager(); //Creates a Fragment Manager to manage the Dialog Boxes
     String MyPassword="";
     String Errormessage="Incorrect Password";
 
@@ -57,16 +61,16 @@ public class HomePage extends Activity {
                    // Set an EditText view to get user input
                    final EditText input = new EditText(context);
                    input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
-
                    alert.setView(input);
-
                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                        public void onClick(DialogInterface dialog, int whichButton) {
-                           //You will get as string input data in this variable.
-                           // here we convert the input to a string and show in a toast.
 
                            MyPassword = input.getEditableText().toString();
 
+                           /**
+                            * Password Validation.  Intent will not start unless password
+                            * matches is correct
+                            */
                            if(MyPassword.equals("tcnjcs")==false)
                            {
                                input.setText("");
@@ -88,8 +92,6 @@ public class HomePage extends Activity {
                    }); //End of alert.setNegativeButton
                    AlertDialog alertDialog = alert.create();
                    alertDialog.show();
-               //Faculty page has not been created yet
-               //Will contain different options for faculty
            }
        });
    }

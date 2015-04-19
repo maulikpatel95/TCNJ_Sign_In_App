@@ -10,6 +10,9 @@ import android.widget.EditText;
 
 /**
  * Created by Maulik on 4/17/2015.
+ *
+ * This class can be ignored for now as it is not currently
+ * being used in the the mobile app.
  */
 public class PasswordDialog extends DialogFragment {
 
