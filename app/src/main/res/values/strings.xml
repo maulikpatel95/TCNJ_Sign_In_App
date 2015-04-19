@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Sign_In</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="Confirmation">Thank you for signing in</string>
+    <string name="AllFieldsNotFilled">Please fill in all relevant fields </string>
+</resources>
