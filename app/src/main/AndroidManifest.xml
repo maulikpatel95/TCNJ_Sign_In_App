@@ -26,6 +26,10 @@
             android:label="FacultyHomePage">
 
         </activity>
+        <activity android:name=".ExportEmail"
+            android:label="ExportEmail">
+            </activity>
+
     </application>
 
 </manifest>

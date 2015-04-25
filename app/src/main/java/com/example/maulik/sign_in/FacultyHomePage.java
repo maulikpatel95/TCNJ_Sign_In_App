@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class FacultyHomePage extends Activity {
 
-    Button SeeList,DeleteData;
+    Button SeeList,DeleteData,ExportEmail;
     String message="Database Records Deleted";
     DatabaseHandler myDB=new DatabaseHandler(this); //Instantiates variable to access SQLite Database
 
@@ -34,6 +34,18 @@ public class FacultyHomePage extends Activity {
 
         SeeList=(Button)findViewById(R.id.FacultyList);
         SeeList.setTextSize(35);
+
+        ExportEmail=(Button)findViewById(R.id.EmailExport);
+        ExportEmail.setTextSize(35);
+        ExportEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i=new Intent(FacultyHomePage.this,ExportEmail.class);
+                startActivity(i);
+
+            }
+        });
 
         DeleteData=(Button)findViewById(R.id.DeleteDatabase);
         DeleteData.setTextSize(35);
