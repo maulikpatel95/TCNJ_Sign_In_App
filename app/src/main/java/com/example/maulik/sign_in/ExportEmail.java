@@ -26,7 +26,7 @@ public class ExportEmail extends Activity {
         setContentView(R.layout.export_email);
 
         ViewEmail=(TextView)findViewById(R.id.EmailList);
-        ViewEmail.setTextSize(25);
+        ViewEmail.setTextSize(30);
 
         ArrayList<Visitor> visitors=myDB.getAllVisitors();
         ArrayList<String> emailList=new ArrayList<String>();
