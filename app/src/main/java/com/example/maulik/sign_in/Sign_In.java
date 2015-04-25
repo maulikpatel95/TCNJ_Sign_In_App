@@ -101,5 +101,22 @@ public class Sign_In extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private boolean Validate() {
+        boolean validate = true;
+
+        if (EmailAddress.getText().toString().contains("@") && (EmailAddress.getText().toString().contains(".edu") || EmailAddress.getText().toString().contains(".com"))) {
+            validate = true;
+        } else {
+            validate = false;
+        }
+
+        if (PhoneNumber.getText().toString().length() != 10) {
+            validate = false;
+        }
+
+        return validate;
+
+    }
+
 
 }
