@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 /**
  * Created by Maulik on 4/25/2015.
+ *
+ * This class will extract all visitors from the Database and store them in an ArrayList.
+ * Functionality added will include sending email list to an intended email recipient. The
+ * recipient will be able to create an email group and maintain user emails.
  */
 public class ExportEmail extends Activity {
 
