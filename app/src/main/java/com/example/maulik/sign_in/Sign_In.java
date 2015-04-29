@@ -32,6 +32,7 @@ public class Sign_In extends ActionBarActivity {
     EditText FullName,EmailAddress,PhoneNumber;
     ArrayList<Visitor> VisitorList=new ArrayList<Visitor>();
     int duration=Toast.LENGTH_SHORT;
+    FragmentManager Manager = getFragmentManager();
     CharSequence message="Please fill all relevant fields";
     private static final String CONFIRMED_STATUS="Signed-In";
     private static final String NOT_SIGNED_IN="Not Signed-In";
@@ -51,30 +52,40 @@ public class Sign_In extends ActionBarActivity {
             @Override
             public void onClick(View v)
             {
-                Context context=getApplicationContext();
-                FragmentManager Manager=getFragmentManager();
-                ConfirmationDialog Submitted=new ConfirmationDialog();
-                IncompleteSubmissionDialog IncompleteSubmit=new IncompleteSubmissionDialog();
-                if(FullName.getText().toString().equals("") || EmailAddress.getText().toString().equals("") || PhoneNumber.getText().toString().equals(""))
-                {
+                //Start of if Statement
 
-                  IncompleteSubmit.show(Manager,NOT_SIGNED_IN);
-                }
-                else {
+                Context context = getApplicationContext();
+                ConfirmationDialog Submitted = new ConfirmationDialog();
+                IncompleteSubmissionDialog IncompleteSubmit = new IncompleteSubmissionDialog();
+                if (FullName.getText().toString().equals("") || EmailAddress.getText().toString().equals("") || PhoneNumber.getText().toString().equals("")) {
+
+                    IncompleteSubmit.show(Manager, NOT_SIGNED_IN);
+                } else {
 
                     /**
-                     * Create a temp Visitor object to store into the database.
-                     * The text fields are then cleared to sign in next user
+                     * Validates email for @ and .edu or .com and validates for exactly 10 digits
+                     * in phone number
                      */
-                    Visitor temp = new Visitor(FullName.getText().toString(), EmailAddress.getText().toString(), PhoneNumber.getText().toString());
-                    myDB.addVisitor(temp); //Add Visitor to the Database
-                    Submitted.show(Manager,CONFIRMED_STATUS);
-                    FullName.setText("");
-                    EmailAddress.setText("");
-                    PhoneNumber.setText("");
+                    if (Validate()) {
+                        /**
+                         * Create a temp Visitor object to store into the database.
+                         * The text fields are then cleared to sign in next user
+                         */
+                        Visitor temp = new Visitor(FullName.getText().toString(), EmailAddress.getText().toString(), PhoneNumber.getText().toString());
+                        myDB.addVisitor(temp); //Add Visitor to the Database
+                        Submitted.show(Manager, CONFIRMED_STATUS);
+                        FullName.setText("");
+                        EmailAddress.setText("");
+                        PhoneNumber.setText("");
+                    } else {
+                        Context thisContext = getApplicationContext();
+                        String ErrorMessage = "Error, Invalid Password or Phone Number not 10 Digits";
+                        Toast.makeText(thisContext, ErrorMessage, Toast.LENGTH_LONG).show();
+                    }
 
                 }
-              //Store data once Submit button is clicked
+
+                //Store data once Submit button is clicked
             }
         });
 
@@ -101,7 +112,13 @@ public class Sign_In extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * private method that will validate email and phone number text fields
+     *
+     * @return boolean validate
+     */
     private boolean Validate() {
+
         boolean validate = true;
 
         if (EmailAddress.getText().toString().contains("@") && (EmailAddress.getText().toString().contains(".edu") || EmailAddress.getText().toString().contains(".com"))) {
