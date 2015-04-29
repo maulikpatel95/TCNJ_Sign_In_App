@@ -64,7 +64,7 @@ public class Sign_In extends ActionBarActivity {
 
                     /**
                      * Validates email for @ and .edu or .com and validates for exactly 10 digits
-                     * in phone number
+                     * in Phone Number
                      */
                     if (Validate()) {
                         /**
