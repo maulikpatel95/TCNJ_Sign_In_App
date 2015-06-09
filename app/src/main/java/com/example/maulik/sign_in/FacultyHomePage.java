@@ -2,6 +2,7 @@ package com.example.maulik.sign_in;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,10 +41,18 @@ public class FacultyHomePage extends Activity {
         ExportEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent i=new Intent(FacultyHomePage.this,ExportEmail.class);
+                String text = "";
+                ArrayList<Visitor> List = myDB.getAllVisitors();
+                for (int counter = 0; counter < List.size(); counter++) {
+                    text = text + List.get(counter).getEmail() + "\n";
+                }
+                Intent i = new Intent(Intent.ACTION_SENDTO);
+                i.setType("text/plain");
+                i.putExtra(i.EXTRA_SUBJECT, "Visitor List");
+                i.putExtra(i.EXTRA_TEXT, "Visitor Emails" + "\n\n" + text);
+                i.setData(Uri.parse("mailto:maulik3000@gmail.com"));
+                i.addFlags(i.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
-
             }
         });
 

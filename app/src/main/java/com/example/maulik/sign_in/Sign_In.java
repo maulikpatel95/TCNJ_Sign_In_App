@@ -29,30 +29,28 @@ import java.util.List;
 public class Sign_In extends ActionBarActivity {
 
     Button SubmitButton;
-    EditText FullName,EmailAddress,PhoneNumber;
-    ArrayList<Visitor> VisitorList=new ArrayList<Visitor>();
-    int duration=Toast.LENGTH_SHORT;
+    EditText FullName, EmailAddress, PhoneNumber;
+    ArrayList<Visitor> VisitorList = new ArrayList<Visitor>();
+    int duration = Toast.LENGTH_SHORT;
     FragmentManager Manager = getFragmentManager();
-    CharSequence message="Please fill all relevant fields";
-    private static final String CONFIRMED_STATUS="Signed-In";
-    private static final String NOT_SIGNED_IN="Not Signed-In";
-    DatabaseHandler myDB=new DatabaseHandler(this);
+    CharSequence message = "Please fill all relevant fields";
+    private static final String CONFIRMED_STATUS = "Signed-In";
+    private static final String NOT_SIGNED_IN = "Not Signed-In";
+    DatabaseHandler myDB = new DatabaseHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign__in);
 
-        FullName=(EditText)findViewById(R.id.VisitorName);
-        EmailAddress=(EditText)findViewById(R.id.EmailAddress);
-        PhoneNumber=(EditText)findViewById(R.id.PhoneNumber);
+        FullName = (EditText) findViewById(R.id.VisitorName);
+        EmailAddress = (EditText) findViewById(R.id.EmailAddress);
+        PhoneNumber = (EditText) findViewById(R.id.PhoneNumber);
 
-        SubmitButton=(Button)findViewById(R.id.ButtonSubmit);
+        SubmitButton = (Button) findViewById(R.id.ButtonSubmit);
         SubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                //Start of if Statement
+            public void onClick(View v) {
 
                 Context context = getApplicationContext();
                 ConfirmationDialog Submitted = new ConfirmationDialog();
@@ -90,7 +88,6 @@ public class Sign_In extends ActionBarActivity {
         });
 
     }
-
 
 
     @Override
