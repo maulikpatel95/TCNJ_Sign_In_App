@@ -14,6 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by Maulik on 4/17/2015.
  *
+ *
  * This class will create a home page where faculty members of the CS department
  * can perform several operations on the list in the database.  Current operations include
  * viewing the Visitor List and deleting all information in the database.  Future operations

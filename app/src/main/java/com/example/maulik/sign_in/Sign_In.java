@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class Sign_In extends ActionBarActivity {
     private static final String CONFIRMED_STATUS = "Signed-In";
     private static final String NOT_SIGNED_IN = "Not Signed-In";
     DatabaseHandler myDB = new DatabaseHandler(this);
+    CheckBox AcceptedStudents, Orientation, Other, InfoSesstion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,32 @@ public class Sign_In extends ActionBarActivity {
                 //Store data once Submit button is clicked
             }
         });
+
+        AcceptedStudents = (CheckBox) findViewById(R.id.AcceptedStud);
+        if (AcceptedStudents.isChecked()) {
+            Orientation.setChecked(false);
+            Other.setChecked(false);
+            InfoSesstion.setChecked(false);
+        }
+
+        Orientation = (CheckBox) findViewById(R.id.Orient);
+        if (Orientation.isChecked()) {
+            AcceptedStudents.setChecked(false);
+            Other.setChecked(false);
+            InfoSesstion.setChecked(false);
+        }
+        Other = (CheckBox) findViewById(R.id.other);
+        if (Other.isChecked()) {
+            AcceptedStudents.setChecked(false);
+            InfoSesstion.setChecked(false);
+            Orientation.setChecked(false);
+        }
+        InfoSesstion = (CheckBox) findViewById(R.id.InfoSess);
+        if (InfoSesstion.isChecked()) {
+            AcceptedStudents.setChecked(false);
+            Other.setChecked(false);
+            Orientation.setChecked(false);
+        }
 
     }
 
